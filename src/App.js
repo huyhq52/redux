@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { toHaveAccessibleDescription } from "@testing-library/jest-dom/matchers";
+import { useState } from "react";
+import Content from './Content'
+import Memo from './Memo'
 
 function App() {
+  const [show, setShow] = useState(false)
+  const [count, setCount] = useState(0)
+
+  function Increase() {
+    setCount(count + 1)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <button onClick={() => setShow(!show)}>Submit</button>
+      {show && <Content />}
+      <Memo />
+      <h1>{count}</h1>
+      <button onClick={Increase}>Click Me!</button>
     </div>
-  );
+  )
 }
 
 export default App;
